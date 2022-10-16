@@ -5,6 +5,7 @@ using System.Numerics;
 
 namespace MongoDBTestProject.Model
 {
+    /* MODEL CLASS - Fuel Station */
     public class FuelStation
     {
         [BsonId]
