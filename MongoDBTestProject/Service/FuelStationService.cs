@@ -23,7 +23,9 @@ namespace MongoDBTestProject.Service
         // Get a single Fuel Station
         public FuelStation GetFuelStation(string id)
         {
-            throw new NotImplementedException();
+            // TESTING 
+            FuelStation fuel = new FuelStation();
+            return fuel;
         }
         // Get a List of Fuel Stations
         public List<FuelStation> GetFuelStations()
