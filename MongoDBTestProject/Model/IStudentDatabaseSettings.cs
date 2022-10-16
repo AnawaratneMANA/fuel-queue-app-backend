@@ -3,6 +3,7 @@
     public interface IStudentDatabaseSettings
     {
         string StudentCollectionName { get; set; }
+        string FuelStationCollectionName { get; set; }
 
         string UserCollectionName { get; set; }
         string DatabaseName { get; set; } 
