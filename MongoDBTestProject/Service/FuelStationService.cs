@@ -23,24 +23,28 @@ namespace MongoDBTestProject.Service
         // Get a single Fuel Station
         public FuelStation GetFuelStation(string id)
         {
-            // TESTING 
-            FuelStation fuel = new FuelStation();
-            return fuel;
+            return _fuelStation.Find(station => station.Id == id).FirstOrDefault();
         }
         // Get a List of Fuel Stations
         public List<FuelStation> GetFuelStations()
         {
-            throw new NotImplementedException();
+            return _fuelStation.Find(station => true).ToList();
         }
         // Remove a fuel station (APP-ADMIN)
         public void RemoveFuelStation(string id)
         {
-            throw new NotImplementedException();
+            _fuelStation.DeleteOne(station => station.Id == id);
         }
         // Update a existing Fuel Station
         public void UpdateFuelStation(string stationId, FuelStation station)
         {
-            throw new NotImplementedException();
+            _fuelStation.ReplaceOne(station => station.Id == stationId, station);
+        }
+
+        // Specific update endpoint for update service starting time and end time.
+        public void UpdateStartTimeAndEndTime()
+        {
+            /* Implement the logic of updating only the starting time and end time.*/
         }
     }
 }

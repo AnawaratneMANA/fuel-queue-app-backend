@@ -43,5 +43,9 @@ namespace MongoDBTestProject.Controllers
 
             return station;
         }
+
+        //GET api/<FuelStationController>/getFuelStations
+        [HttpGet("getFuelStations")]
+        public 
     }
 }
