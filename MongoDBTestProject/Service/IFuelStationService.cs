@@ -13,5 +13,6 @@ namespace MongoDBTestProject.Service
         // Update fuel station queue starting time and ending time.
         void UpdateFuelStation(String stationId, FuelStation station);
         void RemoveFuelStation(String id);
+        void UpdateStartTimeAndEndTime(String id, FuelStation station);
     }
 }

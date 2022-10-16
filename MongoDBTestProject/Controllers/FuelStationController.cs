@@ -38,7 +38,7 @@ namespace MongoDBTestProject.Controllers
             var station = fuelStationService.GetFuelStation(id);
             if (station == null)
             {
-                return NotFound($"user with Id = {id} not found");
+                return NotFound($"Fuel Station with Id = {id} not found");
             }
 
             return station;
@@ -46,6 +46,19 @@ namespace MongoDBTestProject.Controllers
 
         //GET api/<FuelStationController>/getFuelStations
         [HttpGet("getFuelStations")]
-        public 
+        public ActionResult<List<FuelStation>> GetAllFuelStations()
+        {
+            return fuelStationService.GetFuelStations();
+        }
+
+        //PUT api/<FuelStationController>/updateStartEndTime
+        [HttpPut("updateStartEndTime")]
+        public ActionResult updateStartEndTime(String id, [FromBody] FuelStation station)
+        {
+            fuelStationService.UpdateStartTimeAndEndTime(id, station);
+            return NoContent();
+        }
+
+
     }
 }

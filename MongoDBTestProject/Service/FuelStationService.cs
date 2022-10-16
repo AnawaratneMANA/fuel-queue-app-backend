@@ -42,9 +42,13 @@ namespace MongoDBTestProject.Service
         }
 
         // Specific update endpoint for update service starting time and end time.
-        public void UpdateStartTimeAndEndTime()
+        public void UpdateStartTimeAndEndTime(string stationId, FuelStation station)
         {
-            /* Implement the logic of updating only the starting time and end time.*/
+            /* Find the existing document, update only the Starting time and Ending time.*/
+            FuelStation existingStation =  GetFuelStation(stationId);
+            existingStation.StartingTime = station.StartingTime;
+            existingStation.EndingTime = station.EndingTime;
+            _fuelStation.ReplaceOne(station => station.Id == existingStation.Id, existingStation);
         }
     }
 }
