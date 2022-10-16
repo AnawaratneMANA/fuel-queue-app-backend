@@ -23,6 +23,11 @@ namespace MongoDBTestProject.Service
             return _user.Find(user => user.Id == id).FirstOrDefault();
         }
 
+        public User GetUserByUsername(string username)
+        {
+            return _user.Find(user => user.Username == username).FirstOrDefault();
+        }
+
         public List<User> GetStudents()
         {
             return _user.Find(user => true).ToList();

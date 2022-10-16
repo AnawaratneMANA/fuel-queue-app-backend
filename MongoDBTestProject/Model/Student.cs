@@ -8,7 +8,7 @@ namespace MongoDBTestProject.Model
         [BsonRepresentation(BsonType.ObjectId)]
         public String Id { get; set; } = String.Empty;
         [BsonElement("name")]
-        public string Name { get; set; } = String.Empty;
+        public String Name { get; set; } = String.Empty;
         [BsonElement("graduated")]
         public bool IsGraduated { get; set; }
 
