@@ -11,9 +11,20 @@ namespace MongoDBTestProject.Service
         // Init DB Connections
         public FuelStationService(IStudentDatabaseSettings settings, IMongoClient mongoClient)
         {
+            // TODO: Add FuelQueue and FuelQueueHistory collections
+
+            /* Using a single service for all Queue, History, and Fuel Station related 
+             Model classes */
+
             var database = mongoClient.GetDatabase(settings.DatabaseName);
             _fuelStation = database.GetCollection<FuelStation>(settings.FuelStationCollectionName);
         }
+
+        /*
+          Fuel Station - Service Methods 
+         */
+
+
         // Create a new FuelStation
         public FuelStation CreateFuelStation(FuelStation station)
         {
@@ -35,6 +46,7 @@ namespace MongoDBTestProject.Service
         {
             _fuelStation.DeleteOne(station => station.Id == id);
         }
+
         // Update a existing Fuel Station
         public void UpdateFuelStation(string stationId, FuelStation station)
         {
@@ -49,6 +61,22 @@ namespace MongoDBTestProject.Service
             existingStation.StartingTime = station.StartingTime;
             existingStation.EndingTime = station.EndingTime;
             _fuelStation.ReplaceOne(station => station.Id == existingStation.Id, existingStation);
+        }
+
+
+
+        /*
+        FuelQueue, FuelQueueHistory - Service Methods 
+       */
+
+        public void UpdateApprovalStatusFuelRequest(string approaval, string id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void GetFuelQueueRequests()
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -5,6 +5,8 @@ namespace MongoDBTestProject.Service
     /* SERVICE CLASS - Fuel Stations */
     public interface IFuelStationService
     {
+        /* Fuel Station Related Service methods */
+
         // List of fuel stations for the queue users references.
         List<FuelStation> GetFuelStations();
         // Single fuel station details for the Station Owner.
@@ -14,5 +16,9 @@ namespace MongoDBTestProject.Service
         void UpdateFuelStation(String stationId, FuelStation station);
         void RemoveFuelStation(String id);
         void UpdateStartTimeAndEndTime(String id, FuelStation station);
+
+        /* Fuel Queue Request Related Service methods */
+        void UpdateApprovalStatusFuelRequest(String approaval, String id);
+        void GetFuelQueueRequests();
     }
 }
