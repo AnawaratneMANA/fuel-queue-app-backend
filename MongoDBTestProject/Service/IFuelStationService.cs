@@ -14,5 +14,6 @@ namespace MongoDBTestProject.Service
         void UpdateFuelStation(String stationId, FuelStation station);
         void RemoveFuelStation(String id);
         void UpdateStartTimeAndEndTime(String id, FuelStation station);
+        void UpdateApprovalStatusFuelRequest(String approaval, String id); 
     }
 }
