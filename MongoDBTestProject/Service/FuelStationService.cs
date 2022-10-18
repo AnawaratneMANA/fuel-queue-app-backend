@@ -1,5 +1,6 @@
 ﻿using MongoDB.Driver;
 using MongoDBTestProject.Model;
+using static System.Collections.Specialized.BitVector32;
 
 namespace MongoDBTestProject.Service
 {
@@ -7,6 +8,9 @@ namespace MongoDBTestProject.Service
 
     {
         private readonly IMongoCollection<FuelStation> _fuelStation;
+        private readonly IMongoCollection<FuelQueueRequest> _fuelRequest;
+        private readonly IMongoCollection<FuelQueueHistory> _fuelHistory;
+        private readonly IMongoCollection<FuelQueue> _fuelQueue;
 
         // Init DB Connections
         public FuelStationService(IStudentDatabaseSettings settings, IMongoClient mongoClient)
@@ -18,6 +22,10 @@ namespace MongoDBTestProject.Service
 
             var database = mongoClient.GetDatabase(settings.DatabaseName);
             _fuelStation = database.GetCollection<FuelStation>(settings.FuelStationCollectionName);
+            _fuelRequest = database.GetCollection<FuelQueueRequest>(settings.FuelQueueRequestCollectionName);
+            _fuelQueue = database.GetCollection<FuelQueue>(settings.FuelQueueCollectionName);
+            _fuelHistory = database.GetCollection<FuelQueueHistory>(settings.FuelQueueHistoryCollectionName);
+
         }
 
         /*
@@ -59,7 +67,7 @@ namespace MongoDBTestProject.Service
             /* Find the existing document, update only the Starting time and Ending time.*/
             FuelStation existingStation =  GetFuelStation(stationId);
             existingStation.StartingTime = station.StartingTime;
-            existingStation.EndingTime = station.EndingTime;
+            existingStation.EndingTime = station.EndingTime; 
             _fuelStation.ReplaceOne(station => station.Id == existingStation.Id, existingStation);
         }
 
@@ -71,12 +79,27 @@ namespace MongoDBTestProject.Service
 
         public void UpdateApprovalStatusFuelRequest(string approaval, string id)
         {
-            throw new NotImplementedException();
+            /* Find the existing document, update only the Starting time and Ending time.*/
+            FuelQueueRequest existingRequest = GetFuelReqeust(id);
+            existingRequest.ApprovalStatus = approaval;
+            _fuelRequest.ReplaceOne(request => request.Id == existingRequest.Id, existingRequest);
         }
 
-        public void GetFuelQueueRequests()
+        public List<FuelQueueRequest> GetFuelQueueRequests()
         {
-            throw new NotImplementedException();
+            return _fuelRequest.Find(station => true).ToList();
+        }
+
+        // Get a List of Fuel Stations
+        public FuelQueueRequest GetFuelReqeust(String id)
+        {
+            return _fuelRequest.Find(station => station.Id == id).FirstOrDefault();
+        }
+
+        public FuelQueueRequest CreateFuelRequest(FuelQueueRequest request)
+        {
+            _fuelRequest.InsertOne(request);
+            return request;
         }
     }
 }

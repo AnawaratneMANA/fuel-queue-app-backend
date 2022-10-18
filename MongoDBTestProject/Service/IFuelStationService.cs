@@ -19,6 +19,7 @@ namespace MongoDBTestProject.Service
 
         /* Fuel Queue Request Related Service methods */
         void UpdateApprovalStatusFuelRequest(String approaval, String id);
-        void GetFuelQueueRequests();
+        List<FuelQueueRequest> GetFuelQueueRequests();
+        FuelQueueRequest CreateFuelRequest(FuelQueueRequest request);
     }
 }
