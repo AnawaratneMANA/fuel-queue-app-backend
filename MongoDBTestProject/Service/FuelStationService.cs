@@ -101,5 +101,10 @@ namespace MongoDBTestProject.Service
             _fuelRequest.InsertOne(request);
             return request;
         }
+
+        public FuelQueue CreateQueue(FuelQueue queue)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

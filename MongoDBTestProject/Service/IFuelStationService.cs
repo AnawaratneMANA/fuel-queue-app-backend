@@ -17,9 +17,27 @@ namespace MongoDBTestProject.Service
         void RemoveFuelStation(String id);
         void UpdateStartTimeAndEndTime(String id, FuelStation station);
 
+
+
         /* Fuel Queue Request Related Service methods */
         void UpdateApprovalStatusFuelRequest(String approaval, String id);
         List<FuelQueueRequest> GetFuelQueueRequests();
         FuelQueueRequest CreateFuelRequest(FuelQueueRequest request);
+        FuelQueue CreateQueue(FuelQueue queue);
+
+        // Insert Queue
+
+        // Get all Queue 
+
+        // Remove from Queue
+
+        // Specific get Queue
+
+        // Queue History Add
+
+        // Status 
+
+
+
     }
 }
