@@ -4,6 +4,8 @@ using MongoDBTestProject.Service;
 
 namespace MongoDBTestProject.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class FuelStationController : Controller
     {
         private readonly IFuelStationService fuelStationService;

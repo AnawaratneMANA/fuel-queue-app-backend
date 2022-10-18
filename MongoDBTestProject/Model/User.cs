@@ -13,8 +13,8 @@ namespace MongoDBTestProject.Model
         public String Email { get; set; } = String.Empty;
         [BsonElement("password")]
         public byte[]? Password { get; set; }
-        [BsonElement("passwordKay")]
-        public byte[]? PasswordKay { get; set; }
+        [BsonElement("passwordKey")]
+        public byte[]? PasswordKey { get; set; }
         [BsonElement("role")]
         public String Role { get; set; } = String.Empty;
         [BsonElement("vehicleType")]

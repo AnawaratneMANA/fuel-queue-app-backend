@@ -55,7 +55,7 @@ namespace MongoDBTestProject.Controllers
             user.Username = request.Username;
             user.Email = request.Email;
             user.Password = passwordHash;
-            user.PasswordKay = passwordKey;
+            user.PasswordKey = passwordKey;
             user.Role = request.Role;
             user.VehicleType = request.VehicleType;
 
@@ -76,7 +76,7 @@ namespace MongoDBTestProject.Controllers
             {
                 return NotFound($"user with username = {request.Username} not found");
             }
-            bool verification = authService.VerifyPassword(request.Password, existingUser.Password, existingUser.PasswordKay);
+            bool verification = authService.VerifyPassword(request.Password, existingUser.Password, existingUser.PasswordKey);
 
             if (!verification)
             {
