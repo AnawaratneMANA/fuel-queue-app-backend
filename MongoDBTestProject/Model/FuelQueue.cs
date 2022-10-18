@@ -13,5 +13,11 @@ namespace MongoDBTestProject.Model
         [BsonElement("noOfVehicle")]
         // This is the total number of vehicles in the Queue.
         public int NoOfVehicles { get; set; }
+
+        // User id 
+        // Pump Id 
+        // NooOfVehicle -> Vehicle number plate ID
+        // Status (Pending, Already)
+
     }
 }
