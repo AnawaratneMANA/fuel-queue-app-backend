@@ -12,6 +12,7 @@ namespace MongoDBTestProject.Service
             var database = mongoClient.GetDatabase(settings.DatabaseName);
             _user = database.GetCollection<User>(settings.UserCollectionName);
         }
+        // user create method
         public User Create(User user)
         {
             _user.InsertOne(user);
@@ -43,4 +44,5 @@ namespace MongoDBTestProject.Service
             _user.ReplaceOne(user => user.Id == id, user);
         }
     }
+
 }
