@@ -23,15 +23,22 @@ namespace MongoDBTestProject.Service
         void UpdateApprovalStatusFuelRequest(String approaval, String id);
         List<FuelQueueRequest> GetFuelQueueRequests();
         FuelQueueRequest CreateFuelRequest(FuelQueueRequest request);
-        FuelQueue CreateQueue(FuelQueue queue);
+
 
         // Insert Queue
+        FuelQueue CreateQueue(FuelQueue queue);
 
-        // Get all Queue 
-
-        // Remove from Queue
+        // Get all Queue
+        List<FuelQueue> GetAllQueue();
 
         // Specific get Queue
+        FuelQueue GetQueueone(String id);
+
+
+        // Remove from Queue
+        void UpdateQueueStatus(String approaval, String id);
+
+        
 
         // Queue History Add
 
