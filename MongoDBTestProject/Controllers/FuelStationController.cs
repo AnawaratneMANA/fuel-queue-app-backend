@@ -99,6 +99,55 @@ namespace MongoDBTestProject.Controllers
         }
 
 
+        //Queue
+
+        //Create Queue
+        [HttpPost("addFuelStationQueue")]
+        public ActionResult<FuelQueue> AddQueue([FromBody] FuelQueue request)
+        {
+            if (request.VehicleNumber == null || request.UserId == null || request.StationId == null || request.PumpId == null)
+            {
+                return BadRequest("Missing Fuel Station Details!");
+            }
+            FuelQueue queue = new FuelQueue();
+            queue.VehicleNumber = request.VehicleNumber;
+            queue.StationId = request.StationId;
+            queue.UserId = request.UserId;
+            queue.PumpId = request.PumpId;
+           // queue.Status = request.Status;
+            queue.Status = "IN";
+            fuelStationService.CreateQueue(queue);
+            return CreatedAtAction(nameof(GetFuelStation), new { id = queue.Id }, queue);
+        }
+
+        //Get All Queue 
+        [HttpGet("getFuelQueue")]
+        public ActionResult<List<FuelQueue>> GetAllFuelQueue()
+        {
+            return fuelStationService.GetAllQueue();
+        }
+
+        //Get One Queue
+        [HttpGet("getqueue/{id}")]
+        public ActionResult<FuelQueue> GetQueue(String id)
+        {
+            var station = fuelStationService.GetQueueone(id);
+            if (station == null)
+            {
+                return NotFound($"Fuel Queue with Id = {id} not found");
+            }
+
+            return station;
+        }
+
+        [HttpPut("updateQueueState/{id}")]
+        public ActionResult updateQueueStatus(String id, [FromBody] FuelQueue station)
+        {
+            String status = "OUT";
+
+            fuelStationService.UpdateQueueStatus(status, id);
+            return Content(id+" Status Updated!");
+        }
 
     }
 }
