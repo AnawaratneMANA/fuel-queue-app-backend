@@ -104,7 +104,25 @@ namespace MongoDBTestProject.Service
 
         public FuelQueue CreateQueue(FuelQueue queue)
         {
-            throw new NotImplementedException();
+            _fuelQueue.InsertOne(queue);
+            return queue;
+        }
+
+        public List<FuelQueue> GetAllQueue()
+        {
+            return _fuelQueue.Find(station => true).ToList();
+        }
+
+        public FuelQueue GetQueueone(string id)
+        {
+            return _fuelQueue.Find(station => station.Id == id).FirstOrDefault();
+        }
+
+        public void UpdateQueueStatus(string approaval, string id)
+        {
+            FuelQueue existingRequest = GetQueueone(id);
+            existingRequest.Status = approaval;
+            _fuelQueue.ReplaceOne(request => request.Id == existingRequest.Id, existingRequest);
         }
     }
 }

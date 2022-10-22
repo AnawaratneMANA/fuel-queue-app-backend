@@ -19,6 +19,7 @@ namespace MongoDBTestProject.Model
         public String Availability { get; set; } = String.Empty;
         [BsonElement("startingTime")]
         public DateTime StartingTime { get; set; }
+
         [BsonElement("endingTime")]
         public DateTime EndingTime { get; set; }
         [BsonElement("fuelType")]
