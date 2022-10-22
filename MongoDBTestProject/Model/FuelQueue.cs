@@ -27,6 +27,9 @@ namespace MongoDBTestProject.Model
         [BsonElement("status")]
         public String Status { get; set; } = String.Empty;
 
+        [BsonElement("startDateTime")]
+        public DateTime StartingDateTime { get; set; }
+
 
         // User id 
         // Pump Id 

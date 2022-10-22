@@ -124,5 +124,22 @@ namespace MongoDBTestProject.Service
             existingRequest.Status = approaval;
             _fuelQueue.ReplaceOne(request => request.Id == existingRequest.Id, existingRequest);
         }
+
+        public int GetVehicleCount(String id)
+        {
+            var queueList = _fuelQueue.Find(fuelQueue => fuelQueue.StationId == id);
+            return (int)queueList.Count();
+        }
+
+        public void RemoveFuelQueue(String id)
+        {
+            _fuelQueue.DeleteOne(queue => queue.Id == id);
+        }
+
+        public FuelQueueHistory InsertQueueHistory(FuelQueueHistory queueHistory)
+        {
+            _fuelHistory.InsertOne(queueHistory);
+            return (queueHistory);
+        }
     }
 }

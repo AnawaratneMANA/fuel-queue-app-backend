@@ -16,6 +16,9 @@ namespace MongoDBTestProject.Model
         public DateTime StartingDateTime { get; set; }
         [BsonElement("endDateTime")]
         public DateTime EndDateTime { get; set; }
+        [BsonElement("fuelAmount")]
+        public String FuelAmount { get; set; } = String.Empty;
+
 
     }
 }

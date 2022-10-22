@@ -38,12 +38,17 @@ namespace MongoDBTestProject.Service
         // Remove from Queue
         void UpdateQueueStatus(String approaval, String id);
 
-        
+
 
         // Queue History Add
 
         // Status 
+        //get vehicle count
+        int GetVehicleCount(String stationId);
 
+        public void RemoveFuelQueue(String id);
+
+        public FuelQueueHistory InsertQueueHistory(FuelQueueHistory queueHistory);
 
 
     }
