@@ -10,8 +10,12 @@ namespace MongoDBTestProject.Model
         public String Id { get; set; } = String.Empty;
         [BsonElement("stationId")]
         public String StationId { get; set; } = String.Empty;
-        [BsonElement("noOfVehicle")]
-        // This is the total number of vehicles in the Queue. (Do not get removed).
-        public int NoOfVehicles { get; set; }
+        [BsonElement("userId")]
+        public String UserId { get; set; } = String.Empty;
+        [BsonElement("startDateTime")]
+        public DateTime StartingDateTime { get; set; }
+        [BsonElement("endDateTime")]
+        public DateTime EndDateTime { get; set; }
+
     }
 }
