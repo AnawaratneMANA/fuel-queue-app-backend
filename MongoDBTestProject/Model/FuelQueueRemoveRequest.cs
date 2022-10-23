@@ -2,7 +2,7 @@
 {
     public class FuelQueueRemoveRequest
     {
-        public DateTime EndDateTime { get; set; }
+        public String EndDateTime { get; set; } = String.Empty;
         public String FuelAmount { get; set; } = String.Empty;
     }
 }

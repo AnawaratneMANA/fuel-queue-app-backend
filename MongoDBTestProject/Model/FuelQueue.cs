@@ -28,7 +28,7 @@ namespace MongoDBTestProject.Model
         public String Status { get; set; } = String.Empty;
 
         [BsonElement("startDateTime")]
-        public DateTime StartingDateTime { get; set; }
+        public String StartingDateTime { get; set; } = String.Empty;
 
 
         // User id 
