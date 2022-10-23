@@ -6,8 +6,8 @@
         public string Location { get; set; } = string.Empty;
         public int NoOfPumps { get; set; }
         public string Availability { get; set; } = string.Empty;
-        public DateTime StartingTime { get; set; }
-        public DateTime EndingTime { get; set; }
+        public String StartingTime { get; set; } = string.Empty;
+        public String EndingTime { get; set; } = string.Empty;
         public string FuelType { get; set; } = string.Empty;
         public int vehicleCount { get; set; }
     }

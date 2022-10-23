@@ -27,8 +27,8 @@ namespace MongoDBTestProject.Controllers
             station.NoOfPumps = request.NoOfPumps;
             station.Availability = request.Availability;
             station.FuelType = request.FuelType;
-            station.StartingTime = DateTime.Now;
-            station.EndingTime = DateTime.Now;
+            station.StartingTime = request.StartingTime;
+            station.EndingTime = request.EndingTime;
             fuelStationService.CreateFuelStation(station);
             return CreatedAtAction(nameof(GetFuelStation), new { id = station.Id }, station);
         }

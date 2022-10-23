@@ -18,10 +18,10 @@ namespace MongoDBTestProject.Model
         [BsonElement("availability")]
         public String Availability { get; set; } = String.Empty;
         [BsonElement("startingTime")]
-        public DateTime StartingTime { get; set; }
+        public String StartingTime { get; set; } = String.Empty;
 
         [BsonElement("endingTime")]
-        public DateTime EndingTime { get; set; }
+        public String EndingTime { get; set; } = String.Empty;
         [BsonElement("fuelType")]
         public String FuelType { get; set; } = String.Empty;
 
