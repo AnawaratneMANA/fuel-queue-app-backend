@@ -32,7 +32,7 @@ namespace MongoDBTestProject.Model
 
 
         // User id 
-        // Pump Id 
+        // Pump id 
         // NooOfVehicle -> Vehicle number plate ID
         // Status (Pending, Already)
 

@@ -1,4 +1,5 @@
-﻿using MongoDB.Driver;
+﻿using MongoDB.Bson;
+using MongoDB.Driver;
 using MongoDBTestProject.Model;
 using static System.Collections.Specialized.BitVector32;
 
@@ -140,6 +141,12 @@ namespace MongoDBTestProject.Service
         {
             _fuelHistory.InsertOne(queueHistory);
             return (queueHistory);
+        }
+
+        public List<FuelQueueHistory> GetQueueHistory(string id)
+        {
+            return _fuelHistory.Find(queueHistory => queueHistory.UserId == id).ToList();
+
         }
     }
 }

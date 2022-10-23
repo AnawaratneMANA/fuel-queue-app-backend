@@ -29,7 +29,7 @@ namespace MongoDBTestProject.Controllers
             var student = studentService.Get(id);
             if(student == null)
             {
-                return NotFound($"Student with Id = {id} not found");
+                return NotFound($"Student with id = {id} not found");
             }
 
             return student;
@@ -51,7 +51,7 @@ namespace MongoDBTestProject.Controllers
 
             if(existingStudent == null)
             {
-                return NotFound($"Student with Id = {id} not found");
+                return NotFound($"Student with id = {id} not found");
             }
 
             studentService.Update(id,student);
@@ -67,12 +67,12 @@ namespace MongoDBTestProject.Controllers
 
             if (student == null)
             {
-                return NotFound($"Student with Id = {id} not found");
+                return NotFound($"Student with id = {id} not found");
             }
 
             studentService.Remove(student.Id);
 
-            return Ok($"Student with Id = {id} deleted");
+            return Ok($"Student with id = {id} deleted");
         }
     }
 }

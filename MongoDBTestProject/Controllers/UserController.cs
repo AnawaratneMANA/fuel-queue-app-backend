@@ -35,7 +35,7 @@ namespace MongoDBTestProject.Controllers
             var user = userService.Get(id);
             if (user == null)
             {
-                return NotFound($"user with Id = {id} not found");
+                return NotFound($"user with id = {id} not found");
             }
             
             return user;
@@ -94,7 +94,7 @@ namespace MongoDBTestProject.Controllers
 
             if (existingUser == null)
             {
-                return NotFound($"Student with Id = {id} not found");
+                return NotFound($"Student with id = {id} not found");
             }
 
             userService.Update(id, user);
@@ -110,12 +110,12 @@ namespace MongoDBTestProject.Controllers
 
             if (user == null)
             {
-                return NotFound($"Student with Id = {id} not found");
+                return NotFound($"Student with id = {id} not found");
             }
 
             userService.Remove(user.Id);
 
-            return Ok($"Student with Id = {id} deleted");
+            return Ok($"Student with id = {id} deleted");
         }
     }
 }

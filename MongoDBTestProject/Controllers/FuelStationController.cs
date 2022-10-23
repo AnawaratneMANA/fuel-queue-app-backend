@@ -40,19 +40,19 @@ namespace MongoDBTestProject.Controllers
             var station = fuelStationService.GetFuelStation(id);
             if (station == null)
             {
-                return NotFound($"Fuel Station with Id = {id} not found");
+                return NotFound($"Fuel Station with id = {id} not found");
             }
             int count = fuelStationService.GetVehicleCount(id);
 
             FuelStationDetailResponse response = new();
             response.vehicleCount = count;
-            response.Id = station.Id;
-            response.Location = station.Location;
-            response.NoOfPumps = station.NoOfPumps;
-            response.Availability = station.Availability;
-            response.FuelType = station.FuelType;
-            response.StartingTime = station.StartingTime;
-            response.EndingTime = station.EndingTime;
+            response.id = station.Id;
+            response.location = station.Location;
+            response.noOfPumps = station.NoOfPumps;
+            response.availability = station.Availability;
+            response.fuelType = station.FuelType;
+            response.startingTime = station.StartingTime;
+            response.endingTime = station.EndingTime;
             
             return response;
         }
@@ -63,7 +63,7 @@ namespace MongoDBTestProject.Controllers
             var station = fuelStationService.GetFuelStation(id);
             if (station == null)
             {
-                return NotFound($"Fuel Station with Id = {id} not found");
+                return NotFound($"Fuel Station with id = {id} not found");
             }
 
             return station;
@@ -158,7 +158,7 @@ namespace MongoDBTestProject.Controllers
             var station = fuelStationService.GetQueueone(id);
             if (station == null)
             {
-                return NotFound($"Fuel Queue with Id = {id} not found");
+                return NotFound($"Fuel Queue with id = {id} not found");
             }
 
             return station;
@@ -180,17 +180,18 @@ namespace MongoDBTestProject.Controllers
 
             if (queue == null)
             {
-                return NotFound($"Queue with Id = {id} not found");
+                return NotFound($"Queue with id = {id} not found");
             }
-
+            var station = fuelStationService.GetFuelStation(queue.StationId);
             fuelStationService.RemoveFuelQueue(queue.Id);
 
             FuelQueueHistory queueHistory = new();
             queueHistory.StationId = queue.Id;
-            queueHistory.StartingDateTime = queue.StartingDateTime;
+            queueHistory.StartDateTime = queue.StartingDateTime;
             queueHistory.UserId = queue.UserId;
             queueHistory.EndDateTime = request.EndDateTime;
-            if(request.FuelAmount == null)
+            queueHistory.Location = station.Location;
+            if (request.FuelAmount == null)
             {
                 queueHistory.FuelAmount = "Early queue exit";
             }
@@ -201,7 +202,13 @@ namespace MongoDBTestProject.Controllers
 
             fuelStationService.InsertQueueHistory(queueHistory);
 
-            return Ok($"Queue with Id = {id} deleted");
+            return Ok($"Queue with id = {id} deleted");
+        }
+
+        [HttpGet("getUserHistory/{id}")]
+        public ActionResult<List<FuelQueueHistory>> GetUserHistory(String id)
+        {
+            return fuelStationService.GetQueueHistory(id);
         }
 
     }

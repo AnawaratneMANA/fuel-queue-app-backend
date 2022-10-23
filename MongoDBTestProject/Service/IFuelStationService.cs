@@ -50,6 +50,8 @@ namespace MongoDBTestProject.Service
 
         public FuelQueueHistory InsertQueueHistory(FuelQueueHistory queueHistory);
 
+        public List<FuelQueueHistory> GetQueueHistory(String id);
+
 
     }
 }
