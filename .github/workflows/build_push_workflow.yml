@@ -31,3 +31,20 @@ jobs:
         push: true
         tags: ${{ secrets.DOCKER_LOGIN }}/dotnet-backend-server:${{ github.sha }}
         file: ./Dockerfile
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: 'production'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+
+    steps:
+    - name: Deploy to Azure Web App
+      id: deploy-to-webapp
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: 'dotnetwebservice'
+        slot-name: 'production'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_ac10a2b58e8d4b2caede6f3042532136 }}
+        images: '${{ secrets.DOCKER_LOGIN }}/dotnet-backend-server:${{ github.sha }}'
