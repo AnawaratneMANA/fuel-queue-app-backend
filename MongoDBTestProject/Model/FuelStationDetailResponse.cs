@@ -1,5 +1,8 @@
 ﻿namespace MongoDBTestProject.Model
 {
+    /**
+     * fuel station detail response class for send reponse
+     * **/
     public class FuelStationDetailResponse
     {
         public string id { get; set; } = string.Empty;

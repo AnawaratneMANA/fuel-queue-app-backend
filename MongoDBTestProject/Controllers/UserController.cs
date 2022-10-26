@@ -11,10 +11,15 @@ namespace MongoDBTestProject.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    /**
+     * user controller class
+     * **/
     public class UserController : ControllerBase
     {
+        // variable for hold servies interfaces
         private readonly IUserService userService;
         private readonly IAuthHashService authService;
+        // constructor 
         public UserController(IUserService userService, IAuthHashService authService)
         {
             this.userService = userService;
@@ -63,6 +68,7 @@ namespace MongoDBTestProject.Controllers
             return  CreatedAtAction(nameof(Get), new { id = user.Id }, user);
         }
 
+        //POST login api 
         [HttpPost("login")]
         public ActionResult<User> Login([FromBody] UserRequest request)
         {

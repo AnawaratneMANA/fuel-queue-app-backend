@@ -2,26 +2,31 @@
 
 namespace MongoDBTestProject.Service
 {
-    /* SERVICE CLASS - Fuel Stations */
+    /**
+     * feule station service interface 
+     * **/
     public interface IFuelStationService
     {
-        /* Fuel Station Related Service methods */
-
         // List of fuel stations for the queue users references.
         List<FuelStation> GetFuelStations();
         // Single fuel station details for the Station Owner.
         FuelStation GetFuelStation(String id);
+        // create fusel station 
         FuelStation CreateFuelStation(FuelStation station);
         // Update fuel station queue starting time and ending time.
         void UpdateFuelStation(String stationId, FuelStation station);
+        // remove fuel station using id
         void RemoveFuelStation(String id);
+        // update fuel station details using id
         void UpdateStartTimeAndEndTime(String id, FuelStation station);
 
 
 
-        /* Fuel Queue Request Related Service methods */
+        // update the fuel requeat status
         void UpdateApprovalStatusFuelRequest(String approaval, String id);
+        // get the all fuel requeat in the database
         List<FuelQueueRequest> GetFuelQueueRequests();
+        // create new fuel request
         FuelQueueRequest CreateFuelRequest(FuelQueueRequest request);
 
 
@@ -35,21 +40,18 @@ namespace MongoDBTestProject.Service
         FuelQueue GetQueueone(String id);
 
 
-        // Remove from Queue
+        // update Queue status
         void UpdateQueueStatus(String approaval, String id);
 
 
 
-        // Queue History Add
-
-        // Status 
-        //get vehicle count
+        // get vehicle count
         int GetVehicleCount(String stationId);
-
+        // remove the fuel queue using id
         public void RemoveFuelQueue(String id);
-
+        // insert new fuel queue history 
         public FuelQueueHistory InsertQueueHistory(FuelQueueHistory queueHistory);
-
+        // get the list of fuel queue histories
         public List<FuelQueueHistory> GetQueueHistory(String id);
 
 

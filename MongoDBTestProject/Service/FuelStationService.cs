@@ -5,16 +5,20 @@ using static System.Collections.Specialized.BitVector32;
 
 namespace MongoDBTestProject.Service
 {
+    /**
+     * fuel station service class
+     * **/
     public class FuelStationService : IFuelStationService
 
     {
+        // veriables for hold mongo colllection
         private readonly IMongoCollection<FuelStation> _fuelStation;
         private readonly IMongoCollection<FuelQueueRequest> _fuelRequest;
         private readonly IMongoCollection<FuelQueueHistory> _fuelHistory;
         private readonly IMongoCollection<FuelQueue> _fuelQueue;
 
         // Init DB Connections
-        public FuelStationService(IStudentDatabaseSettings settings, IMongoClient mongoClient)
+        public FuelStationService(IDatabaseSettings settings, IMongoClient mongoClient)
         {
             // TODO: Add FuelQueue and FuelQueueHistory collections
 
@@ -86,6 +90,7 @@ namespace MongoDBTestProject.Service
             _fuelRequest.ReplaceOne(request => request.Id == existingRequest.Id, existingRequest);
         }
 
+        // get the all fuel requeat in the database
         public List<FuelQueueRequest> GetFuelQueueRequests()
         {
             return _fuelRequest.Find(station => true).ToList();
@@ -97,28 +102,33 @@ namespace MongoDBTestProject.Service
             return _fuelRequest.Find(station => station.Id == id).FirstOrDefault();
         }
 
+        // create new fuel request
         public FuelQueueRequest CreateFuelRequest(FuelQueueRequest request)
         {
             _fuelRequest.InsertOne(request);
             return request;
         }
 
+        // Insert Queue
         public FuelQueue CreateQueue(FuelQueue queue)
         {
             _fuelQueue.InsertOne(queue);
             return queue;
         }
 
+        // Get all Queue
         public List<FuelQueue> GetAllQueue()
         {
             return _fuelQueue.Find(station => true).ToList();
         }
 
+        // Specific get Queue
         public FuelQueue GetQueueone(string id)
         {
             return _fuelQueue.Find(station => station.Id == id).FirstOrDefault();
         }
 
+        // update Queue status
         public void UpdateQueueStatus(string approaval, string id)
         {
             FuelQueue existingRequest = GetQueueone(id);
@@ -126,23 +136,27 @@ namespace MongoDBTestProject.Service
             _fuelQueue.ReplaceOne(request => request.Id == existingRequest.Id, existingRequest);
         }
 
+        // get vehicle count
         public int GetVehicleCount(String id)
         {
             var queueList = _fuelQueue.Find(fuelQueue => fuelQueue.StationId == id);
             return (int)queueList.Count();
         }
 
+        // remove the fuel queue using id
         public void RemoveFuelQueue(String id)
         {
             _fuelQueue.DeleteOne(queue => queue.Id == id);
         }
 
+        // insert new fuel queue history 
         public FuelQueueHistory InsertQueueHistory(FuelQueueHistory queueHistory)
         {
             _fuelHistory.InsertOne(queueHistory);
             return (queueHistory);
         }
 
+        // get the list of fuel queue histories
         public List<FuelQueueHistory> GetQueueHistory(string id)
         {
             return _fuelHistory.Find(queueHistory => queueHistory.UserId == id).ToList();

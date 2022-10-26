@@ -2,6 +2,9 @@
 using MongoDB.Bson.Serialization.Attributes;
 namespace MongoDBTestProject.Model
 {
+    /**
+     * user model class
+     * **/
     public class User
     {
         [BsonId]
