@@ -194,12 +194,12 @@ namespace MongoDBTestProject.Controllers
             fuelStationService.RemoveFuelQueue(queue.Id);
 
             FuelQueueHistory queueHistory = new();
-            queueHistory.StationId = queue.Id;
+            queueHistory.StationId = queue.StationId;
             queueHistory.StartDateTime = queue.StartingDateTime;
             queueHistory.UserId = queue.UserId;
             queueHistory.EndDateTime = request.EndDateTime;
             queueHistory.Location = station.Location;
-            if (request.FuelAmount == null)
+            if (request.FuelAmount == "")
             {
                 queueHistory.FuelAmount = "Early queue exit";
             }
