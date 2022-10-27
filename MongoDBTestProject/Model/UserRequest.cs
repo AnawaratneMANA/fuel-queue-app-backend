@@ -1,6 +1,9 @@
 ﻿
 namespace MongoDBTestProject.Model
 {
+    /**
+     * user request class for get user request
+     * **/
     public class UserRequest
     {
         public String Username { get; set; } = String.Empty;

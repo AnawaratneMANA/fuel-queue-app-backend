@@ -6,9 +6,14 @@ namespace MongoDBTestProject.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    /** 
+     * fuel station controller class 
+     ***/
     public class FuelStationController : Controller
     {
+        // variable for hold servies interfaces
         private readonly IFuelStationService fuelStationService;
+        // constructor 
         public FuelStationController(IFuelStationService fuelStationService)
         {
             this.fuelStationService = fuelStationService;
@@ -164,6 +169,8 @@ namespace MongoDBTestProject.Controllers
             return station;
         }
 
+
+        //PUT update queue status
         [HttpPut("updateQueueState/{id}")]
         public ActionResult updateQueueStatus(String id, [FromBody] FuelQueue station)
         {
@@ -173,6 +180,7 @@ namespace MongoDBTestProject.Controllers
             return Content(id+" Status Updated!");
         }
 
+        //DELETE delete fuel queue from the collection
         [HttpDelete("removeFuelQueue/{id}")]
         public ActionResult RemoveFuelQueue(String id, [FromBody] FuelQueueRemoveRequest request)
         {
@@ -186,12 +194,12 @@ namespace MongoDBTestProject.Controllers
             fuelStationService.RemoveFuelQueue(queue.Id);
 
             FuelQueueHistory queueHistory = new();
-            queueHistory.StationId = queue.Id;
+            queueHistory.StationId = queue.StationId;
             queueHistory.StartDateTime = queue.StartingDateTime;
             queueHistory.UserId = queue.UserId;
             queueHistory.EndDateTime = request.EndDateTime;
             queueHistory.Location = station.Location;
-            if (request.FuelAmount == null)
+            if (request.FuelAmount == "")
             {
                 queueHistory.FuelAmount = "Early queue exit";
             }
@@ -205,6 +213,7 @@ namespace MongoDBTestProject.Controllers
             return Ok($"Queue with id = {id} deleted");
         }
 
+        //GET get the all fuel history base on user
         [HttpGet("getUserHistory/{id}")]
         public ActionResult<List<FuelQueueHistory>> GetUserHistory(String id)
         {

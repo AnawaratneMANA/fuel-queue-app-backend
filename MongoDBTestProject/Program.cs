@@ -8,10 +8,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.Configure<StudentDatabaseSettings>(builder.Configuration.GetSection(nameof(StudentDatabaseSettings)));
-builder.Services.AddSingleton<IStudentDatabaseSettings>(sp=>sp.GetRequiredService<IOptions <StudentDatabaseSettings>>().Value);
-builder.Services.AddSingleton<IMongoClient>(s => new MongoClient(builder.Configuration.GetValue<string>("StudentDatabaseSettings:ConnectionString")));
-builder.Services.AddScoped<IStudentService, StudentService>();
+builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection(nameof(DatabaseSettings)));
+builder.Services.AddSingleton<IDatabaseSettings>(sp=>sp.GetRequiredService<IOptions <DatabaseSettings>>().Value);
+builder.Services.AddSingleton<IMongoClient>(s => new MongoClient(builder.Configuration.GetValue<string>("DatabaseSettings:ConnectionString")));
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IAuthHashService, AuthHashService>();
 builder.Services.AddScoped<IFuelStationService, FuelStationService>();

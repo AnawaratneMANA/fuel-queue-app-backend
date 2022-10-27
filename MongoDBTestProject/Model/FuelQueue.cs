@@ -3,6 +3,9 @@ using MongoDB.Bson;
 
 namespace MongoDBTestProject.Model
 {
+    /** 
+     * fuel queue model class
+     * **/
     public class FuelQueue
     {
         [BsonId]
